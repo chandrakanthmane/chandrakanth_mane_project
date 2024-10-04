@@ -1,0 +1,145 @@
+
+.container {
+  display: grid;
+  grid-template-areas: 
+    "header header"
+    "sidebar main"
+    "footer footer";
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Header */
+.header {
+  grid-area: header;
+  background-color: #ffffff;
+  color: #000;
+  text-align: center;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 0px 10px grey;
+  border-bottom-right-radius: 10px;
+
+  img{
+    width: 165px;
+    aspect-ratio: 16/9;
+  }
+
+  h1{
+    margin: 0 auto;
+  }
+}
+
+/* Sidebar */
+.sidebar {
+  grid-area: sidebar;
+  background-color: #fff;
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
+  border-top-right-radius: 20px;
+  box-shadow: 0px 10px 10px grey;
+  margin-top: 1px;
+  font-size: 22px;
+
+  li{
+    list-style: none;
+    padding: 10px;
+
+    a{
+      text-decoration: none;
+      color: #000;
+    }
+  }
+}
+
+.router-link-active{
+  background-color: #000;
+  border-radius: 10px;
+
+    a{
+      color: #fff !important;
+    }
+}
+
+.sidebar.collapsed {
+  display: none;
+}
+
+/* Main Content */
+.main-content {
+  grid-area: main;
+  padding: 20px;
+}
+
+/* Footer */
+.footer {
+  grid-area: footer;
+  background-color: #ffffff;
+  color: #000;
+  text-align: center;
+  padding: 15px;
+  box-shadow: 0px 0px 10px grey;
+  border-top-right-radius: 10px;
+  font-size: 20px;
+
+  a{
+    color: #000;
+  }
+}
+
+/* Toggle Button */
+.toggle-btn {
+  display: none;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+  
+  /* Table styling */
+  
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      grid-template-areas: 
+        "header"
+        "main"
+        "footer";
+      grid-template-columns: 1fr;
+    }
+  
+    .toggle-btn {
+      display: block;
+    }
+  
+    table, tbody, th, td {
+      display: block;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Apply fade-in to specific elements */
+  .fade-in {
+    animation: fadeIn 2s ease-in-out;
+  }
+  
+  
+
+  

@@ -1,0 +1,72 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  /* Pagination controls */
+  .pagination {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .pagination button {
+    padding: 10px;
+  }
+  
+  /* Error message styling */
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  .animated-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s ease;
+  }
+  
+  .animated-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Apply fade-in to specific elements */
+  .fade-in {
+    animation: fadeIn 2s ease-in-out;
+  }
+
+  @media (max-width: 768px) {
+  
+    table, tbody, th, td {
+      display: block;
+    }
+  }

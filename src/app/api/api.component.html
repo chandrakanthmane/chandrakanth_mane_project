@@ -1,0 +1,29 @@
+<div class="repo-section fade-in">
+    <h2>GitHub Repositories</h2>
+    <input type="text" [(ngModel)]="username" placeholder="Enter GitHub username" (input)="fetchRepos()" />
+    <table *ngIf="repos.length > 0">
+      <thead>
+        <tr>
+          <th>Repository Name</th>
+          <th>Stars</th>
+          <th>Forks</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let repo of paginatedRepos">
+          <td>{{ repo.name }}</td>
+          <td>{{ repo.stargazers_count }}</td>
+          <td>{{ repo.forks_count }}</td>
+          <td><a [href]="repo.html_url" target="_blank">View Repo</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination" *ngIf="repos.length > 0">
+      <button (click)="previousPage()" class="animated-btn" [disabled]="page === 1">Previous</button>
+      <span>Page {{ page }} of {{ totalPages }}</span>
+      <button (click)="nextPage()" class="animated-btn" [disabled]="page === totalPages">Next</button>
+    </div>
+  </div>

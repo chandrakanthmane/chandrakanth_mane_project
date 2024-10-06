@@ -1,43 +1,93 @@
 form {
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
+    width: 50%;
+    margin: 30px auto;
+    padding: 40px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #fff;
+    box-shadow: 0 0 10px grey;
+    height: auto;
   }
   
   .form-group {
     margin-bottom: 15px;
   }
   
-  label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-  }
+  /* app.component.css */
+
+/* Floating label container */
+.floating-label {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+/* Input field styling */
+input {
+  width: 100%;
+  padding: 12px 10px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  outline: 2px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+
+
+/* Label styling */
+label {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  font-size: 16px;
+  color: #999;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background-color: white; /* Add background color to avoid overlap */
+  padding: 0 5px
+}
+
+/* Active label when input has value or is focused */
+label.active {
+  top: -12px;
+  font-size: 16px;
+  color: #000;
+  font-weight: 600;
+}
+
+input:focus {
+  outline: none;
+  border-color: #000; /* Change border color on focus */
+}
+
+.password-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute; /* Ensure the button is placed over the input */
+  right: 10px; /* Adjust as necessary */
+  padding-top: 10px;
+  color: #aaa; /* Change color as needed */
+  font-size: 20px; /* Adjust size */
+}
+
+/* Error message styling */
+.error-message {
+  color: red;
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.success-message {
+  color: green;
+  font-size: 15px;
+  margin-top: 5px;
+}
+
   
-  input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-  }
-  
-  button:disabled {
-    background-color: #ddd;
+  .animated-btn:disabled {
+    background-color: #ddd !important;
     cursor: not-allowed;
   }
 
@@ -52,11 +102,12 @@ form {
     font-size: 16px;
     transition: background-color 0.3s, transform 0.3s ease;
   }
-  
-  .animated-btn:hover {
+
+  .animated-btn:hover{
     background-color: #45a049;
-    transform: scale(1.05);
+      transform: scale(1.05);
   }
+  
 
   @keyframes fadeIn {
     from {
@@ -72,9 +123,12 @@ form {
     animation: fadeIn 2s ease-in-out;
   }
 
-  @media (max-width: 768px) {
+  @media only screen and (max-width: 1000px) {
    
-  
+    form{
+      width: 95%;
+      padding: 40px 15px;
+    }
     .toggle-btn {
       display: block;
     }

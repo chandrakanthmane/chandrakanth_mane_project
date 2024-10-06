@@ -1,3 +1,14 @@
+h2{
+  margin-bottom: 15px;
+}
+
+input{
+  padding: 10px;
+  min-width: 200px;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -16,7 +27,7 @@ table {
   
   /* Pagination controls */
   .pagination {
-    margin-top: 10px;
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,13 +35,6 @@ table {
   
   .pagination button {
     padding: 10px;
-  }
-  
-  /* Error message styling */
-  .error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
   }
 
   .animated-btn {
@@ -40,9 +44,14 @@ table {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%;
+    width: 30%;
     font-size: 16px;
     transition: background-color 0.3s, transform 0.3s ease;
+  }
+
+  .animated-btn:disabled {
+    background-color: #ddd !important;
+    cursor: not-allowed;
   }
   
   .animated-btn:hover {
@@ -64,9 +73,48 @@ table {
     animation: fadeIn 2s ease-in-out;
   }
 
-  @media (max-width: 768px) {
-  
-    table, tbody, th, td {
-      display: block;
+  @media only screen and (max-width: 1000px) {
+    h2{
+      margin-bottom: 14px;
     }
+
+    table, thead, tbody, th, td, tr {
+			display: block;
+		}
+
+    thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+    tr {
+      margin: 0 0 1rem 0;
+    }
+      
+    tr:nth-child(odd) {
+      background: #ccc;
+    }
+    
+		td {
+			border: none;
+			border-bottom: 1px solid #eee;
+			position: relative;
+			padding-left: 50%;
+		}
+
+		td:before {
+			position: absolute;
+			top: 7px;
+			left: 6px;
+			width: 45%;
+			padding-right: 10px;
+			white-space: nowrap;
+      font-weight: 700;
+		}
+
+		td:nth-of-type(1):before { content: "Repository Name"; }
+		td:nth-of-type(2):before { content: "Stars"; }
+		td:nth-of-type(3):before { content: "Forks"; }
+		td:nth-of-type(4):before { content: "Link"; }
   }

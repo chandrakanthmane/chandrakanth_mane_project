@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { GithubApiService } from '../github-api.service'; // Adjust path as necessary
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-api',
@@ -10,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './api.component.html',
   styleUrl: './api.component.css'
 })
-export class ApiComponent {
+export class ApiComponent implements OnInit {
   repos: any[] = [];
   paginatedRepos: any[] = [];
   page: number = 1;
@@ -18,17 +19,23 @@ export class ApiComponent {
   totalPages: number = 1;
   username: string = 'angular'; // Default GitHub username
 
-  constructor(private http: HttpClient) {
-   
-    this.fetchRepos(); // Fetch repos on component load
+  constructor(private githubService: GithubApiService) { }
+
+  ngOnInit(): void {
+    this.fetchRepos();
   }
 
-  fetchRepos() {
-    this.http.get(`https://api.github.com/users/${this.username}/repos`).subscribe((data: any) => {
-      this.repos = data;
-      this.totalPages = Math.ceil(this.repos.length / this.perPage);
-      this.updatePaginatedRepos();
-    });
+  fetchRepos(): void {
+    this.githubService.fetchRepos(this.username).subscribe(
+      (data: any) => {
+        this.repos = data;
+        this.totalPages = Math.ceil(this.repos.length / this.perPage);
+        this.updatePaginatedRepos();
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error fetching repositories:', error);
+      }
+    );
   }
 
   updatePaginatedRepos() {

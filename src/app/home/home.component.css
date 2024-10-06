@@ -1,5 +1,5 @@
 .container{
-    width: 500px;
+    width: 60%;
     height: 65%;
     display: flex;
     flex-direction: column;
@@ -8,4 +8,26 @@
     margin: 7% auto;
     box-shadow: 0 0 10px grey;
     border-radius: 10px;
+    padding: 20px;
+    text-align: center;
 }
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Apply fade-in to specific elements */
+  .fade-in {
+    animation: fadeIn 2s ease-in-out;
+  }
+
+  @media only screen and (max-width: 1000px)  {
+    .container{
+      width: 95%;
+    }
+  }

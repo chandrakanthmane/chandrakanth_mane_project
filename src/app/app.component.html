@@ -1,7 +1,7 @@
-<!-- app.component.html -->
 <div class="container">
   <!-- Header -->
   <header class="header fade-in">
+    <button (click)="toggleSidebar()"><i [ngClass]="icon"></i></button>
     <img src="../assets/lockup_angular.svg" alt="Logo">
     <h1>Responsive Project</h1>
   </header>
@@ -10,18 +10,16 @@
   <aside class="sidebar fade-in" [ngClass]="{'collapsed': isSidebarCollapsed}">
     <nav>
       <ul>
-        <li [class.router-link-active]="home.isActive"><a routerLink="/home" routerLinkActive="active" #home="routerLinkActive"><i class="fa-solid fa-house"></i>Home</a></li>
-        <li [class.router-link-active]="form.isActive"><a routerLink="form" routerLinkActive="active" #form="routerLinkActive">Interactive Form</a></li>
-        <li [class.router-link-active]="api.isActive"><a routerLink="api" routerLinkActive="active" #api="routerLinkActive">API Integration</a></li>
+        <li [class.router-link-active]="home.isActive"><a routerLink="/home" routerLinkActive="active" #home="routerLinkActive" (click)="hideSidebarOnMobile()"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+        <li [class.router-link-active]="form.isActive"><a routerLink="form" routerLinkActive="active" #form="routerLinkActive" (click)="hideSidebarOnMobile()"><i class="fa-solid fa-file"></i><span>InterActive Form</span></a></li>
+        <li [class.router-link-active]="api.isActive"><a routerLink="api" routerLinkActive="active" #api="routerLinkActive" (click)="hideSidebarOnMobile()"><i class="fa-solid fa-server"></i><span>API Integration</span></a></li>
       </ul>
     </nav>
   </aside>
 
   <!-- Main Content -->
-  <main class="main-content fade-in">
-    <!-- <button class="toggle-btn" (click)="toggleSidebar()">Toggle Sidebar</button> -->
-    <router-outlet></router-outlet>
-    
+  <main class="main-content">
+    <router-outlet></router-outlet>    
   </main>
 
   <!-- Footer -->

@@ -12,9 +12,13 @@ import { ScrollRevealDirective } from '../../core/scroll-reveal.directive';
   styleUrl: './contact.component.css',
 })
 export class ContactComponent {
+  private readonly formspreeEndpoint = 'https://formspree.io/f/xykrqdyv';
+
   readonly profile = PROFILE;
   contactForm: FormGroup;
+  sending = false;
   sent = false;
+  error = false;
 
   contactCards = [
     { icon: 'fa-solid fa-envelope', label: 'Email', value: PROFILE.email, href: `mailto:${PROFILE.email}` },
@@ -35,19 +39,32 @@ export class ContactComponent {
     return this.contactForm.controls;
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
       return;
     }
 
-    const { name, email, subject, message } = this.contactForm.value;
-    const body = `${message}\n\n— ${name} (${email})`;
-    const mailto = `mailto:${this.profile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
+    this.sending = true;
+    this.error = false;
 
-    this.sent = true;
-    this.contactForm.reset();
-    setTimeout(() => (this.sent = false), 5000);
+    try {
+      const response = await fetch(this.formspreeEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(this.contactForm.value),
+      });
+
+      if (!response.ok) throw new Error('Form submission failed');
+
+      this.sent = true;
+      this.contactForm.reset();
+      setTimeout(() => (this.sent = false), 5000);
+    } catch {
+      this.error = true;
+      setTimeout(() => (this.error = false), 5000);
+    } finally {
+      this.sending = false;
+    }
   }
 }

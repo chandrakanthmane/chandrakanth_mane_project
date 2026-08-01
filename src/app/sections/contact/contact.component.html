@@ -69,12 +69,15 @@
           }
         </div>
 
-        <button type="submit" class="btn btn-primary submit-btn">
-          <i class="fa-solid fa-paper-plane"></i> Send Message
+        <button type="submit" class="btn btn-primary submit-btn" [disabled]="sending">
+          <i class="fa-solid fa-paper-plane"></i> {{ sending ? 'Sending…' : 'Send Message' }}
         </button>
 
         @if (sent) {
-          <p class="sent-note"><i class="fa-solid fa-circle-check"></i> Opening your email client…</p>
+          <p class="sent-note"><i class="fa-solid fa-circle-check"></i> Message sent! I'll get back to you soon.</p>
+        }
+        @if (error) {
+          <p class="error-note"><i class="fa-solid fa-circle-exclamation"></i> Something went wrong. Please email me directly at {{ profile.email }}.</p>
         }
       </form>
     </div>

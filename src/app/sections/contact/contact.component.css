@@ -134,6 +134,18 @@ a.contact-card:hover {
   text-align: center;
 }
 
+.error-note {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  color: #f87171;
+  text-align: center;
+}
+
+.submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
 @media (max-width: 900px) {
   .contact-grid {
     grid-template-columns: 1fr;

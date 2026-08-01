@@ -1,0 +1,142 @@
+.timeline {
+  position: relative;
+  max-width: 880px;
+  margin: 0 auto;
+  padding-left: 46px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(var(--border), var(--border));
+  background-image: linear-gradient(to bottom, var(--accent-1), var(--accent-2));
+  opacity: 0.35;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -46px;
+  top: 6px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  border: 2px solid var(--accent-1);
+}
+
+.dot-current {
+  background: var(--gradient);
+  border-color: transparent;
+  box-shadow: 0 0 0 5px rgba(124, 92, 255, 0.18);
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.timeline-card {
+  padding: 26px 28px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.timeline-card:hover {
+  transform: translateX(6px);
+  border-color: var(--accent-1);
+  box-shadow: var(--shadow);
+}
+
+.timeline-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.timeline-card-head h3 {
+  font-size: 1.15rem;
+  margin-bottom: 4px;
+}
+
+.company {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+.period-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.active-badge {
+  color: var(--accent-2);
+  border-color: var(--accent-2);
+}
+
+.timeline-points {
+  display: grid;
+  gap: 10px;
+}
+
+.timeline-points li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+}
+
+.timeline-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gradient);
+}
+
+@media (max-width: 640px) {
+  .timeline {
+    padding-left: 34px;
+  }
+
+  .timeline-marker {
+    left: -34px;
+  }
+
+  .timeline-card {
+    padding: 20px;
+  }
+}

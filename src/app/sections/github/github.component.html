@@ -1,0 +1,59 @@
+<section id="github" class="section github-section">
+  <div class="container">
+    <div class="section-head" appReveal>
+      <p class="eyebrow">Live from GitHub</p>
+      <h2 class="section-title">Open source &amp; repositories</h2>
+      <p class="section-subtitle">Pulled live from the GitHub API — search any username to explore their public repos.</p>
+    </div>
+
+    <div class="github-search glass" appReveal>
+      <i class="fa-brands fa-github"></i>
+      <input
+        type="text"
+        [(ngModel)]="username"
+        placeholder="GitHub username"
+        (keyup.enter)="fetchRepos()"
+      />
+      <button class="btn btn-primary btn-sm" (click)="fetchRepos()">
+        <i class="fa-solid fa-magnifying-glass"></i> Search
+      </button>
+    </div>
+
+    @if (loading) {
+      <div class="github-state">
+        <span class="spinner"></span> Fetching repositories…
+      </div>
+    } @else if (error) {
+      <div class="github-state error">
+        <i class="fa-solid fa-triangle-exclamation"></i> {{ error }}
+      </div>
+    } @else {
+      <div class="repo-grid">
+        @for (repo of visibleRepos; track repo.id) {
+          <a class="repo-card" [href]="repo.html_url" target="_blank" rel="noopener" appReveal>
+            <div class="repo-card-head">
+              <i class="fa-solid fa-code-branch repo-icon"></i>
+              <h3>{{ repo.name }}</h3>
+            </div>
+            <p class="repo-desc">{{ repo.description || 'No description provided.' }}</p>
+            <div class="repo-meta">
+              @if (repo.language) {
+                <span class="lang"><span class="lang-dot" [style.background]="langColor(repo.language)"></span>{{ repo.language }}</span>
+              }
+              <span><i class="fa-solid fa-star"></i> {{ repo.stargazers_count }}</span>
+              <span><i class="fa-solid fa-code-fork"></i> {{ repo.forks_count }}</span>
+            </div>
+          </a>
+        }
+      </div>
+
+      @if (repos.length === 0) {
+        <p class="empty-state">No public repositories found.</p>
+      } @else if (visibleCount < repos.length) {
+        <div class="show-more-wrap">
+          <button class="btn btn-outline btn-sm" (click)="showMore()">Show More Repos</button>
+        </div>
+      }
+    }
+  </div>
+</section>

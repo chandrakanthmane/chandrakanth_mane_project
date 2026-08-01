@@ -1,0 +1,49 @@
+<section id="projects" class="section projects">
+  <div class="container">
+    <div class="section-head" appReveal>
+      <p class="eyebrow">Selected Work</p>
+      <h2 class="section-title">Projects that shipped real impact</h2>
+      <p class="section-subtitle">A mix of enterprise platforms and product builds — supply chain tracing, sustainability tooling, banking, and healthcare.</p>
+    </div>
+
+    <div class="projects-grid">
+      @for (project of projects; track project.name; let i = $index) {
+        <article
+          class="project-card"
+          appReveal
+          [revealDelay]="(i % 3) * 100"
+          #card
+          (mousemove)="onCardMove($event, card)"
+        >
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="project-head">
+            <span class="project-icon"><i [class]="project.icon"></i></span>
+            <span class="project-period">{{ project.period }}</span>
+          </div>
+
+          <h3>{{ project.name }}</h3>
+          @if (project.subtitle) {
+            <p class="project-subtitle">{{ project.subtitle }}</p>
+          }
+
+          <ul class="project-points" [class.collapsed]="!isExpanded(project.name)">
+            @for (point of project.points; track point) {
+              <li>{{ point }}</li>
+            }
+          </ul>
+
+          <button class="expand-btn" (click)="toggle(project.name)">
+            {{ isExpanded(project.name) ? 'Show less' : 'Show more' }}
+            <i class="fa-solid" [class.fa-chevron-down]="!isExpanded(project.name)" [class.fa-chevron-up]="isExpanded(project.name)"></i>
+          </button>
+
+          <div class="project-tech">
+            @for (tech of project.tech; track tech) {
+              <span class="tag">{{ tech }}</span>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

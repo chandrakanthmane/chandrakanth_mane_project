@@ -1,0 +1,77 @@
+<div class="scroll-progress" [style.width.%]="scrollProgress"></div>
+
+<header class="navbar" [class.scrolled]="isScrolled">
+  <div class="container navbar-inner">
+    <a class="brand" href="#home" (click)="$event.preventDefault(); scrollTo('home')">
+      <span class="brand-mark">CM</span>
+      <span class="brand-name">Chandrakanth<span class="gradient-text">.</span></span>
+    </a>
+
+    <nav class="nav-links" [class.open]="isMenuOpen">
+      <ul>
+        @for (link of navLinks; track link.id) {
+          <li>
+            <a
+              href="#{{ link.id }}"
+              [class.active]="activeSection() === link.id"
+              (click)="$event.preventDefault(); scrollTo(link.id)"
+            >{{ link.label }}</a>
+          </li>
+        }
+      </ul>
+      <div class="nav-actions-mobile">
+        <a class="btn btn-primary btn-sm" [href]="profile.resumeFile" download (click)="closeMenu()">
+          <i class="fa-solid fa-download"></i> Resume
+        </a>
+      </div>
+    </nav>
+
+    <div class="navbar-actions">
+      <button class="icon-btn theme-toggle" (click)="toggleTheme()" aria-label="Toggle theme">
+        @if (themeService.theme() === 'dark') {
+          <i class="fa-solid fa-sun"></i>
+        } @else {
+          <i class="fa-solid fa-moon"></i>
+        }
+      </button>
+      <a class="btn btn-primary btn-sm resume-btn" [href]="profile.resumeFile" download>
+        <i class="fa-solid fa-download"></i> Resume
+      </a>
+      <button class="icon-btn menu-toggle" (click)="toggleMenu()" aria-label="Toggle menu">
+        <i class="fa-solid" [class.fa-bars]="!isMenuOpen" [class.fa-xmark]="isMenuOpen"></i>
+      </button>
+    </div>
+  </div>
+  <div class="nav-backdrop" [class.open]="isMenuOpen" (click)="closeMenu()"></div>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark">CM</span>
+      <div>
+        <p class="footer-title">{{ profile.name }}</p>
+        <p class="footer-role">{{ profile.role }} · {{ profile.location }}</p>
+      </div>
+    </div>
+
+    <div class="footer-socials">
+      <a [href]="profile.github" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a [href]="profile.linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a [href]="'mailto:' + profile.email" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      <a [href]="'tel:' + profile.phone" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+    </div>
+
+    <p class="footer-copy">&copy; {{ currentYear }} {{ profile.name }}. Crafted with Angular.</p>
+  </div>
+</footer>
+
+@if (showBackToTop) {
+  <button class="back-to-top" (click)="scrollToTop()" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+}

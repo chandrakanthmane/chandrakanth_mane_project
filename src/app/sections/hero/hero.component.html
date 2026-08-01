@@ -1,0 +1,61 @@
+<section id="home" class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <div class="container hero-inner">
+    <div class="hero-copy" appReveal>
+      <p class="eyebrow"><i class="fa-solid fa-location-dot"></i>&nbsp;{{ profile.location }} · Available for opportunities</p>
+
+      <h1 class="hero-title">
+        Hi, I'm <span class="gradient-text">{{ profile.name }}</span>
+      </h1>
+
+      <div class="hero-role">
+        <span class="typed">{{ typedText }}</span><span class="caret">|</span>
+      </div>
+
+      <p class="hero-summary">{{ profile.summary }}</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projects" (click)="$event.preventDefault(); scrollToId('projects')">
+          <i class="fa-solid fa-diagram-project"></i> View Projects
+        </a>
+        <a class="btn btn-outline" href="#contact" (click)="$event.preventDefault(); scrollToId('contact')">
+          <i class="fa-solid fa-paper-plane"></i> Get In Touch
+        </a>
+        <a class="btn btn-outline" [href]="profile.resumeFile" download>
+          <i class="fa-solid fa-download"></i> Resume
+        </a>
+      </div>
+
+      <div class="hero-socials">
+        <a [href]="profile.github" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a [href]="profile.linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a [href]="'mailto:' + profile.email" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+
+    <div class="hero-visual" appReveal [revealDelay]="150">
+      <div class="avatar-ring">
+        <div class="avatar-core">
+          <img class="avatar-photo" src="assets/profilePic.jpeg" [alt]="profile.name">
+        </div>
+        <span class="orbit-chip chip-1"><i class="fa-brands fa-angular"></i></span>
+        <span class="orbit-chip chip-2"><i class="fa-brands fa-react"></i></span>
+        <span class="orbit-chip chip-3"><i class="fa-brands fa-node-js"></i></span>
+        <span class="orbit-chip chip-4"><i class="fa-brands fa-js"></i></span>
+        <span class="orbit-chip chip-5 chip-text">TS</span>
+        <span class="orbit-chip chip-6 chip-text">PG</span>
+      </div>
+    </div>
+  </div>
+
+  <button class="scroll-cue" aria-label="Scroll down" (click)="scrollToId('about')">
+    <span class="mouse"><span class="wheel"></span></span>
+    <span class="scroll-label">Scroll</span>
+  </button>
+</section>
